@@ -13,8 +13,19 @@ app.get('/', (req, res) => {
 });
 
 app.get('/posts', (req,res) => {
-  res.send('Hey from Ppage');
+  Post.find({}, (err, data) => {
+      res.send(data);
+    });
 });
+
+app.get('/newpost', (req,res) => {
+  Post.create({title:"Test Post 3"}, (err,data) => {
+      if(err) console.log('Error with database');
+      else console.log('Post created');
+      res.send(data);
+
+  })
+})
 
 db.on('open', () => {
   console.log('db connection opened');
@@ -26,10 +37,7 @@ db.on('open', () => {
       if(err) console.log('Error with database');
       else console.log('Post created');
     })
-    //Finds all posts and log to the console
-    Post.find({}, (err, data) => {
-      console.log('Database data found', data);
-    })
+    
     //Find all that match specific title
     Post.find({title: 'find this title'}, (err, data) => {
       console.log('Database data found', data);
