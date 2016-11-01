@@ -21,9 +21,18 @@ db.on('open', () => {
 
   app.listen(5555, () => {
     console.log("The app is listening on port 5555");
+    //Creating a test post everytime the server refreshes
     Post.create({title: 'test post 1'}, (err,data) => {
       if(err) console.log('Error with database');
       else console.log('Post created');
+    })
+    //Finds all posts and log to the console
+    Post.find({}, (err, data) => {
+      console.log('Database data found', data);
+    })
+    //Find all that match specific title
+    Post.find({title: 'find this title'}, (err, data) => {
+      console.log('Database data found', data);
     })
   });
 })
