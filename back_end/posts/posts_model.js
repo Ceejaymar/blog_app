@@ -1,3 +1,7 @@
+/////////////////////////////////
+//Just making the schemas here 
+//to be imported elsewhere
+////////////////////////////////
 //BLOG POSTS:
 //Title of blog posts
 //Date posted
@@ -27,8 +31,9 @@
 const mongoose = require('mongoose');
 const blogSchema = mongoose.Schema({
   title: {type: String, required: true},
-  author: String,
-  date: Date,
+  author: {type: String},
+  date: {type: Date},
+  body: {type: String}
 })
 
 const Post =  mongoose.model('Post', blogSchema);
